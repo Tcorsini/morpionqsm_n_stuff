@@ -1,6 +1,9 @@
 #include "classic_ai.hpp"
 #include <cstdio>
 
+//temps en secondes
+#define AI_TIME 1
+
 namespace timGames {
 
   static int countPlay = 0;
@@ -95,7 +98,7 @@ namespace timGames {
   int ClassicAI::chooseMove(int player_id, int nb_moves, int *moves) {
     (void) nb_moves;
     (void) moves;
-    int score1 = core.alpha_beta(depth, player_id, this, false);
+    int score1 = core.alpha_beta_time(depth, player_id, this, AI_TIME, false);
     int choice1 = core._best_move;
     printf("AB : Calculated (%d, %d):\n", countPlay, countReversePlay);
     //printf("Current score(j1 : %d, j2 : %d)\n", score_players[0], score_players[1]);

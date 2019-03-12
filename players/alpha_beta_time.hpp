@@ -13,8 +13,8 @@ public:
 	    bool (*last_move) (int, void*));
   virtual ~AlphaBetaTime() {}
   long min_max_time(int depth, int player_id, void* obj,
-		    int time, bool random=false);
-  long alpha_beta_time(int depth, int player_id, void* obj, int time,
+		    double time, bool random=false);
+  long alpha_beta_time(int depth, int player_id, void* obj, double time,
 		  bool random = false, bool isAlphaBeta = true,
 		  long alpha = MIN_HEURISTIQUE, long beta = MAX_HEURISTIQUE);
 };

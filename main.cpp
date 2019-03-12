@@ -6,7 +6,7 @@
 #include <stdlib.h>
 
 #define NB_PLAYERS 2
-#define DIFF 7
+#define DIFF 100
 #define MAX_TRIES 5
 
 int next_player(int player_id) {

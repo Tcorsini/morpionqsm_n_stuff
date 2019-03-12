@@ -3,7 +3,7 @@ CPPFLAGS=-Wall -Werror
 GA=games
 PL=players
 BLD=build
-NECESSARY=rectangular_board.o main.o human.o random_player.o alpha_beta.o classic_ai.o connect4.o
+NECESSARY=rectangular_board.o main.o human.o random_player.o alpha_beta.o alpha_beta_time.o classic_ai.o connect4.o
 
 game: ${NECESSARY}
 	g++ ${CPPFLAGS} $^ -o $@
@@ -27,6 +27,9 @@ random_player.o: ${PL}/random_player.cpp ${PL}/player.hpp ${PL}/random_player.hp
 	g++ ${CPPFLAGS} -c $<
 
 alpha_beta.o: ${PL}/alpha_beta.cpp ${PL}/alpha_beta.hpp 
+	g++ ${CPPFLAGS} -c $<
+
+alpha_beta_time.o: ${PL}/alpha_beta_time.cpp ${PL}/alpha_beta_time.hpp 
 	g++ ${CPPFLAGS} -c $<
 
 classic_ai.o: ${PL}/classic_ai.cpp ${GA}/connect4.hpp ${PL}/classic_ai.hpp ${PL}/alpha_beta.hpp

@@ -1,4 +1,6 @@
 #include "alpha_beta_time.hpp"
+#include <ctime>
+#include <cstdio>
 
 AlphaBetaTime::
 AlphaBetaTime(int (*heuristique) (int, int, void*),
@@ -14,9 +16,25 @@ AlphaBetaTime(int (*heuristique) (int, int, void*),
 
 long AlphaBetaTime::
 min_max_time(int depth, int player_id, void* obj,
-	     int time, bool random=false);
+	     double time, bool random) {
+  return alpha_beta_time(depth, player_id, obj, time, random, false);
+}
 
 long AlphaBetaTime::
-alpha_beta_time(int depth, int player_id, void* obj, int time,
-		bool random = false, bool isAlphaBeta = true,
-		long alpha = MIN_HEURISTIQUE, long beta = MAX_HEURISTIQUE);
+alpha_beta_time(int depth, int player_id, void* obj, double time,
+		bool random, bool isAlphaBeta,
+		long alpha, long beta) {
+  //struct timeval tv1, tv2;
+  clock_t start, end;
+  double delta;
+  long result;
+  int i = 1;
+  start = clock();
+  do {
+    result = alpha_beta(i, player_id, obj, random, isAlphaBeta, alpha, beta);
+    end = clock();
+    delta = (double(end - start) / CLOCKS_PER_SEC);
+    printf("depth : %d, time : %f\n", i, delta);
+  } while (i++ < depth &&  delta < time);
+  return result;
+}

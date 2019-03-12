@@ -4,7 +4,7 @@
 
 #include "player.hpp"
 #include "../games/connect4.hpp"
-#include "alpha_beta.hpp"
+#include "alpha_beta_time.hpp"
 
 namespace timGames {
 
@@ -18,7 +18,7 @@ namespace timGames {
   };
 
   class ClassicAI : virtual public Player {
-    AlphaBeta core;
+    AlphaBetaTime core;
     Connect4 myboard;
     const char* name;
     int id;
