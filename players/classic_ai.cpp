@@ -98,7 +98,11 @@ namespace timGames {
   int ClassicAI::chooseMove(int player_id, int nb_moves, int *moves) {
     (void) nb_moves;
     (void) moves;
-    int score1 = core.alpha_beta_time(depth, player_id, this, AI_TIME, false);
+    int max_depth = depth;
+    int remaining_moves = (myboard.get_max_length() * myboard.get_max_column()) - myboard.get_nb_pieces();
+    if (depth > remaining_moves)
+      max_depth = remaining_moves;
+    int score1 = core.alpha_beta_time(max_depth, player_id, this, AI_TIME, false);
     int choice1 = core._best_move;
     printf("AB : Calculated (%d, %d):\n", countPlay, countReversePlay);
     //printf("Current score(j1 : %d, j2 : %d)\n", score_players[0], score_players[1]);
